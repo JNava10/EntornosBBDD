@@ -6,7 +6,7 @@ import java.sql.*
  * @constructor Create empty Conexion b d
  */
 class ConexionBD {
-    val url = "jdbc:mysql://localhost/supermercadosimple"
+    val url = "jdbc:mysql://localhost/supermercado"
     val user = "root"
     val password = ""
     var conn: Connection? = null
