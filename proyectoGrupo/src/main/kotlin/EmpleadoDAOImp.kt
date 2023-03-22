@@ -1,3 +1,8 @@
+/**
+ * Empleado d a o imp
+ *
+ * @constructor Create empty Empleado d a o imp
+ */
 class EmpleadoDAOImp : EmpleadoDAO {
     private val conexion = ConexionBD()
     override fun getEmpleadoByDni(dni: String): Empleado? {

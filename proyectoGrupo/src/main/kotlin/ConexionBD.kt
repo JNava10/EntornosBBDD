@@ -1,5 +1,10 @@
 import java.sql.*
 
+/**
+ * Conexion b d
+ *
+ * @constructor Create empty Conexion b d
+ */
 class ConexionBD {
     val url = "jdbc:mysql://localhost/supermercadosimple"
     val user = "root"
@@ -7,7 +12,10 @@ class ConexionBD {
     var conn: Connection? = null
 
 
-
+    /**
+     * Conectar
+     *
+     */
     fun conectar() {
         try {
             //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver")
@@ -20,6 +28,10 @@ class ConexionBD {
         }
     }
 
+    /**
+     * Desconectar
+     *
+     */
     fun desconectar() {
         try {
             conn?.close()
@@ -28,10 +40,21 @@ class ConexionBD {
         }
     }
 
+    /**
+     * Get statement
+     *
+     * @return
+     */
     fun getStatement(): Statement? {
         return conn?.createStatement()
     }
 
+    /**
+     * Get prepared statement
+     *
+     * @param sql
+     * @return
+     */
     fun getPreparedStatement(sql: String): PreparedStatement? {
         return conn?.prepareStatement(sql)
     }

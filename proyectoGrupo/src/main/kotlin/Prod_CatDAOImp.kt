@@ -1,3 +1,8 @@
+/**
+ * Prod_cat d a o imp
+ *
+ * @constructor Create empty Prod_cat d a o imp
+ */
 class Prod_CatDAOImp:Prod_CatDAO {
     private val conexion = ConexionBD()
     override fun getCatByCod_Prod(codigo: Int): Categoria? {

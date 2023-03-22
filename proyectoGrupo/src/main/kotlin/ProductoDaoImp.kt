@@ -1,3 +1,8 @@
+/**
+ * Producto dao imp
+ *
+ * @constructor Create empty Producto dao imp
+ */
 class ProductoDaoImp : ProductoDAO{
     private val conexion = ConexionBD()
     override fun getProductoByCodigo(codigo: Int): Producto? {

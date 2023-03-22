@@ -1,3 +1,8 @@
+/**
+ * Categoria d a o impl
+ *
+ * @constructor Create empty Categoria d a o impl
+ */
 class CategoriaDAOImpl : CategoriaDAO {
     private val conexion = ConexionBD()
 
