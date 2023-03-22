@@ -42,6 +42,7 @@ class EmpleadoDAOImp : EmpleadoDAO {
         ps?.setString(1, empleado.dni)
         ps?.setString(2, empleado.nombre)
         ps?.setString(3, empleado.puesto)
+
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()
