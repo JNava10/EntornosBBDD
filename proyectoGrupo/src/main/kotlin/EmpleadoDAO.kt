@@ -33,7 +33,7 @@ interface EmpleadoDAO {
      * @param empleado
      * @return
      */
-    fun updateEmpleado(empleado: Empleado): Boolean
+    fun updateEmpleado(empleado: Empleado?,puesto:String): Boolean
 
     /**
      * Delete empleado

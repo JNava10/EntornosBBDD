@@ -49,12 +49,12 @@ class EmpleadoDAOImp : EmpleadoDAO {
         return result == 1
     }
 
-    override fun updateEmpleado(empleado: Empleado): Boolean {
+    override fun updateEmpleado(empleado: Empleado?,puesto:String): Boolean {
         conexion.conectar()
         val query = "UPDATE empleados SET puesto = ? WHERE dni = ?"
         val ps = conexion.getPreparedStatement(query)
-        ps?.setString(1, empleado.puesto)
-        ps?.setString(2, empleado.dni)
+        ps?.setString(1, puesto)
+        ps?.setString(2, empleado?.dni)
         val result = ps?.executeUpdate()
         ps?.close()
         conexion.desconectar()
