@@ -3,6 +3,12 @@
  *
  * @constructor Create empty Categoria d a o
  */
+
+val campos = arrayListOf(
+    "codigo",
+    "descripcion"
+)
+
 interface CategoriaDAO {
     /**
      * Get categoria by codigo

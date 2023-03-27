@@ -5,7 +5,7 @@ fun main() {
 }
 
 fun mostrarInicio() {
-    println(Menu.bienvenida)
+    println(Menu_str.bienvenida)
     println(NomTablas.imprimir())
     // TODO: Mostrar tablas
     // TODO: Elegir opcion
