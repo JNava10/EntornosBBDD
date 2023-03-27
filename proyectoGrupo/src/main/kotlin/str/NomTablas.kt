@@ -1,5 +1,7 @@
+package str
+
 /**
- * NomTablas
+ * str.NomTablas
  *
  * @constructor Clase que almacena los nombres
  * de las tablas existentes en la base de datos
@@ -12,5 +14,10 @@ class NomTablas {
             "Prod_Cat",
             "Producto"
         )
+        fun imprimir() {
+            for (i in nombres.indices) {
+                println("$i ${nombres[i]}")
+            }
+        }
     }
 }
