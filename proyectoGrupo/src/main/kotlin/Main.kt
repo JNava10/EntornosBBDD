@@ -12,7 +12,7 @@ fun comprobarAccion() {
 }
 
 fun pedirAccion(): String {
-    // TODO
+    var accion=readlm()
     // ¿Que quieres hacer? (Despedir, contratar o cambiar puesto)
     // Dependiendo de que acción escoga el usuario, se deberá llamar a una funcion u otra.
     return ""
