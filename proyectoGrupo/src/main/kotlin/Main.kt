@@ -2,18 +2,29 @@ import str.Menu_str
 
 fun main() {
     println(Menu_str.bienvenida)
-    var accion: String = pedirAccion()
+    var accion: Int = pedirAccion()
     comprobarAccion()
 
 }
 
-fun comprobarAccion() {
-    TODO("Not yet implemented")
+
+fun mostrarTablas() {
+    println("Selecciona una de las siguientes")
+    println("1. Categoría")
+    println("2. Empleado")
+    println("3. Producto")
 }
 
-fun pedirAccion(): String {
-    var accion=readlm()
-    // ¿Que quieres hacer? (Despedir, contratar o cambiar puesto)
-    // Dependiendo de que acción escoga el usuario, se deberá llamar a una funcion u otra.
-    return ""
+fun comprobarAccion() {
+
+}
+
+fun pedirAccion(): Int {
+    try {
+        var accion = readln().toInt()
+    } catch (ex: NumberFormatException) {
+        println("Solo se puede introducir números")
+        pedirAccion()
+
+    }
 }
