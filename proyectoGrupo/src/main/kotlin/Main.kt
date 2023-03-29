@@ -5,14 +5,25 @@ fun main() {
     var accion: String = pedirAccion()
     comprobarAccion()
 
+var p= ProductoDaoImp()
+
+
+
+
+
 }
 
 fun comprobarAccion() {
     TODO("Not yet implemented")
 }
 
+
+
+
+
+
 fun pedirAccion(): String {
-    var accion=readlm()
+    // TODO
     // ¿Que quieres hacer? (Despedir, contratar o cambiar puesto)
     // Dependiendo de que acción escoga el usuario, se deberá llamar a una funcion u otra.
     return ""
