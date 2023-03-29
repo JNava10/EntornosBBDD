@@ -42,4 +42,5 @@ interface ProductoDAO {
      * @return
      */
     fun deleteProducto(codigo: Int): Boolean
+    fun updateProductoPrecio(producto: Producto?): Boolean
 }

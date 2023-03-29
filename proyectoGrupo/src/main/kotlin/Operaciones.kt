@@ -27,7 +27,12 @@ class Operaciones {
      */
     fun obtTodosProductos() {
         var cat = 1
-        var productos2=prod_cat.getAllProdbyCat(cat)
+        var dao=ProductoDaoImp()
+        var productos2=dao.getAllProducto()
+        productos2.forEach{ println(it) }
+    }
+    fun obtTodosProductosPorCategoria(categoria: Int) {
+        var productos2=prod_cat.getAllProdbyCat(categoria)
         productos2.forEach{ println(it) }
     }
 
@@ -65,5 +70,17 @@ class Operaciones {
         println("¿Que puesto va a tener este trabajador?")
         var puesto= readln()
         empleadoDAO.updateEmpleado(emple, puesto)
+    }
+
+    /**Funcion para modificar precio de un producto**/
+    fun modPrecio(cod:Int,precio:Int){
+        var dao=ProductoDaoImp()
+        var producto:Producto?
+        producto=dao.getProductoByCodigo(cod)
+
+        if (producto != null) {
+            producto.precio=precio
+        }
+        dao.updateProductoPrecio(producto)
     }
 }

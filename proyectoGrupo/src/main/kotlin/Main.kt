@@ -1,11 +1,9 @@
 import str.Menu_str
 
 fun main() {
-    println(Menu_str.bienvenida)
-    var accion: String = pedirAccion()
-    comprobarAccion()
-
-var p= ProductoDaoImp()
+   // println(Menu_str.bienvenida)
+    //var accion: String = pedirAccion()
+   // comprobarAccion()
 
 
 

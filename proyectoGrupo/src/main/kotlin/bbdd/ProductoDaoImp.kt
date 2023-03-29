@@ -62,6 +62,23 @@ class ProductoDaoImp : ProductoDAO{
         return result == 1
     }
 
+    override fun updateProductoPrecio(producto: Producto?): Boolean {
+            conexion.conectar()
+            val query = "UPDATE productos SET precio = ? WHERE cod_prod = ?"
+            val ps = conexion.getPreparedStatement(query)
+        if (producto != null) {
+            ps?.setInt(1, producto.precio)
+        }
+        if (producto != null) {
+            ps?.setInt(2, producto.codigo)
+        }
+            val result = ps?.executeUpdate()
+            ps?.close()
+            conexion.desconectar()
+            return result == 1
+
+        }
+
     override fun deleteProducto(codigo: Int): Boolean {
         conexion.conectar()
         val query = "DELETE FROM productos WHERE cod_prod = ?"
