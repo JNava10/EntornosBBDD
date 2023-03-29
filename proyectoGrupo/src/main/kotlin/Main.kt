@@ -4,6 +4,7 @@ fun main() {
     println(Menu_str.bienvenida)
     var accion: String = pedirAccion()
     comprobarAccion()
+
 }
 
 fun comprobarAccion() {
