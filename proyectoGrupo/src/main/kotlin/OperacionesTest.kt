@@ -8,12 +8,16 @@ internal class OperacionesTest {
         var empleadoDAO=EmpleadoDAOImp()
         var emple=empleadoDAO.getEmpleadoByDni(dni)
 
-        assertEquals("Juan",emple?.nombre)
+        assertEquals("Pedro",emple?.nombre)
 
     }
 
     @org.junit.jupiter.api.Test
     fun obtTodosEmpl() {
+        var empleadoDAO = EmpleadoDAOImp()
+        var emple = empleadoDAO.getAllEmpleados()
+
+        assertEquals(4,emple.size)
     }
 
     @org.junit.jupiter.api.Test
