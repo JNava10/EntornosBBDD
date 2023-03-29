@@ -1,18 +1,19 @@
+import org.junit.jupiter.api.Test
+
 import org.junit.jupiter.api.Assertions.*
 
-internal class OperacionesTest {
+class OperacionesTest2 {
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun obtEmpleado() {
         var dni="1111"
         var empleadoDAO=EmpleadoDAOImp()
         var emple=empleadoDAO.getEmpleadoByDni(dni)
 
         assertEquals("Pedro",emple?.nombre)
-
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun obtTodosEmpl() {
         var empleadoDAO = EmpleadoDAOImp()
         var emple = empleadoDAO.getAllEmpleados()
@@ -20,7 +21,7 @@ internal class OperacionesTest {
         assertEquals(4,emple.size)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun obtTodosProductos() {
         var dao = ProductoDaoImp()
         var prop = dao.getAllProducto()
@@ -28,7 +29,19 @@ internal class OperacionesTest {
         assertEquals(12, prop.size)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    fun obtTodosProductosPorCategoria() {
+    }
+
+    @Test
+    fun obtProducto() {
+    }
+
+    @Test
+    fun obtTodoProductos() {
+    }
+
+    @Test
     fun obtCategoriaProd() {
         val prod_cat = Prod_CatDAOImp()
         var codProd = 1
@@ -37,7 +50,15 @@ internal class OperacionesTest {
         assertEquals(1,codProd)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    fun obtCategoria() {
+    }
+
+    @Test
+    fun obtTodoCategoria() {
+    }
+
+    @Test
     fun contrEmpleado() {
         var dao = EmpleadoDAOImp()
         var dniEmple:String = "23"
@@ -47,19 +68,35 @@ internal class OperacionesTest {
         dao.insertEmpleado(empleado1)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun despEmpleado() {
         var dao = EmpleadoDAOImp()
         var dniEmple:String = "23"
         dao.deleteEmpleado(dniEmple)
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     fun cambiarPuesto() {
         var dao = EmpleadoDAOImp()
         var dniEmple:String = "1111"
         var emple=dao.getEmpleadoByDni(dniEmple)
         var puesto= "2"
         dao.updateEmpleado(emple, puesto)
+    }
+
+    @Test
+    fun modPrecio() {
+    }
+
+    @Test
+    fun altaProd() {
+    }
+
+    @Test
+    fun bajaProd() {
+    }
+
+    @Test
+    fun modCantidad() {
     }
 }
