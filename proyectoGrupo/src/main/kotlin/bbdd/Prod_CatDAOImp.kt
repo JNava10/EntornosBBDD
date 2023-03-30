@@ -35,4 +35,22 @@ class Prod_CatDAOImp:Prod_CatDAO {
         conexion.desconectar()
         return productos
     }
+
+    /** Cambiar la categoria de un producto.
+     * @param codProd
+     * @param cod_cat
+     */
+    override fun updateCatProd(cod_prod: Int, cod_cat: Int) {
+        conexion.conectar()
+        val query = "UPDATE Producto SET cod_cat = ? WHERE cod_prod LIKE ?"
+
+        val preparedStatement = conexion.getPreparedStatement(query)
+
+        preparedStatement?.setInt(1, cod_cat)
+        preparedStatement?.setInt(2, cod_prod)
+
+        val resultSet = preparedStatement?.executeQuery(query)
+        preparedStatement?.close()
+        conexion.desconectar()
+    }
 }

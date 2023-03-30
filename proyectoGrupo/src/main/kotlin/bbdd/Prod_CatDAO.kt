@@ -19,4 +19,5 @@ interface Prod_CatDAO {
      * @return
      */
     fun getAllProdbyCat(cod_cat:Int): List<Producto>
+    fun updateCatProd(cod_prod: Int, cod_cat: Int)
 }
