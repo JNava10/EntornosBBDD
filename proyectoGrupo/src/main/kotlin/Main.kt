@@ -13,12 +13,13 @@ fun mostrarTablas() {
     println("1. Categoría")
     println("2. Empleado")
     println("3. Producto")
+    println("4. Categoría de producto")
 }
 
 fun comprobarAccion(accion:Int) {
     when (accion){
         1 -> {
-            imprimirOpcionesEmple()
+            imprimirOpcionesCat()
             var accion= pedirAccion()
             when(accion){
                 1 -> operaciones.insertarCategoria()
@@ -28,7 +29,7 @@ fun comprobarAccion(accion:Int) {
         }
 
         2 -> {
-            imprimirOpcionesCat()
+            imprimirOpcionesEmple()
             var accion= pedirAccion()
             when(accion){
                 1 -> operaciones.contrEmpleado()
@@ -38,7 +39,17 @@ fun comprobarAccion(accion:Int) {
         }
 
         3 -> {
-            imprimirOpcionesEmple()
+            imprimirOpcionesProd()
+            var accion= pedirAccion()
+            when(accion){
+                1 -> operaciones.contrEmpleado()
+                2 -> operaciones.despEmpleado()
+                3 -> operaciones.cambiarPuesto()
+            }
+        }
+
+        4 -> {
+            imprimirOpcionesProdCat()
             var accion= pedirAccion()
             when(accion){
                 1 -> operaciones.contrEmpleado()
@@ -47,6 +58,18 @@ fun comprobarAccion(accion:Int) {
             }
         }
     }
+}
+
+fun imprimirOpcionesProd() {
+    println("1.Añadir categoria")
+    println("2.Borrar categoria")
+    println("3.Modificar categoria")
+}
+
+fun imprimirOpcionesProdCat() {
+    println("1.Añadir categoria")
+    println("2.Borrar categoria")
+    println("3.Modificar categoria")
 }
 
 fun imprimirOpcionesCat() {
