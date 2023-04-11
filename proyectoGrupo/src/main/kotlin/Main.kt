@@ -2,8 +2,9 @@ import str.Menu_str
 var operaciones= Operaciones()
 fun main() {
     println(Menu_str.bienvenida)
+    mostrarTablas()
     var accion: Int = pedirNumero()
-    comprobarAccion()
+    comprobarAccion(accion)
 
 }
 
@@ -24,7 +25,7 @@ fun comprobarAccion(accion:Int) {
                 1 -> operaciones.insertarCategoria()
                 2 -> operaciones.borrarCategoria()
                 3 -> operaciones.modificarCategoria()
-                4 -> operaciones.obt
+                4 -> operaciones.obtTodasCat()
             }
         }
 
@@ -46,6 +47,7 @@ fun comprobarAccion(accion:Int) {
                 1 -> operaciones.contrEmpleado()
                 2 -> operaciones.despEmpleado()
                 3 -> operaciones.cambiarPuesto()
+                4 -> operaciones.obtCategoriaProd()
             }
         }
 
@@ -54,9 +56,8 @@ fun comprobarAccion(accion:Int) {
             var accion= pedirNumero()
             when(accion){
                 1 -> operaciones.obtCategoriaProd()
-                2 -> operaciones.cat()
-                3 -> operaciones.cambiarCategoriaProd()
-                4 -> operaciones.obtTodosProdCat()
+                2 -> operaciones.cambiarCategoriaProd()
+                3 -> operaciones.obtTodosProdCat()
             }
         }
     }
@@ -66,19 +67,20 @@ fun imprimirOpcionesProd() {
     println("1.Añadir categoria")
     println("2.Borrar categoria")
     println("3.Modificar categoria")
+    println("4.Obtener todos los productos")
 }
 
 fun imprimirOpcionesProdCat() {
     println("1.Añadir categoria")
-    println("2.Borrar categoria")
-    println("3.Modificar categoria")
-    println("4.Obtener todos los productos de categoria")
+    println("2.Modificar categoria")
+    println("3.Obtener todos los productos de categoria")
 }
 
 fun imprimirOpcionesCat() {
     println("1.Añadir categoria")
     println("2.Borrar categoria")
     println("3.Modificar categoria")
+    println("4. Obtener todas las categorias")
 }
 
 
