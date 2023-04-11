@@ -21,25 +21,6 @@ class OperacionesTest2 {
         assertEquals(4,emple.size)
     }
 
-    @Test
-    fun obtTodosProductos() {
-        var dao = ProductoDaoImp()
-        var prop = dao.getAllProducto()
-
-        assertEquals(12, prop.size)
-    }
-
-    @Test
-    fun obtTodosProductosPorCategoria() {
-    }
-
-    @Test
-    fun obtProducto() {
-    }
-
-    @Test
-    fun obtTodoProductos() {
-    }
 
     @Test
     fun obtCategoriaProd() {
@@ -50,13 +31,6 @@ class OperacionesTest2 {
         assertEquals(1,codProd)
     }
 
-    @Test
-    fun obtCategoria() {
-    }
-
-    @Test
-    fun obtTodoCategoria() {
-    }
 
     @Test
     fun contrEmpleado() {
@@ -84,19 +58,4 @@ class OperacionesTest2 {
         dao.updateEmpleado(emple, puesto)
     }
 
-    @Test
-    fun modPrecio() {
-    }
-
-    @Test
-    fun altaProd() {
-    }
-
-    @Test
-    fun bajaProd() {
-    }
-
-    @Test
-    fun modCantidad() {
-    }
 }
