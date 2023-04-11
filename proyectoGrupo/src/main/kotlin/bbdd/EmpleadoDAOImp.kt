@@ -1,3 +1,5 @@
+import java.sql.SQLIntegrityConstraintViolationException
+
 /**
  * Empleado d a o imp
  *
@@ -37,16 +39,20 @@ class EmpleadoDAOImp : EmpleadoDAO {
 
     override fun insertEmpleado(empleado: Empleado): Boolean {
         conexion.conectar()
+        var result:Int?=null
         val query = "INSERT INTO empleados (dni, nombre, puesto) VALUES (?, ?, ?)"
         val ps = conexion.getPreparedStatement(query)
         ps?.setString(1, empleado.dni)
         ps?.setString(2, empleado.nombre)
         ps?.setString(3, empleado.puesto)
-
-        val result = ps?.executeUpdate()
+        try {
+             result = ps?.executeUpdate()
+        }catch (pk:SQLIntegrityConstraintViolationException){
+            println("La clave primaria esta repetida")
+        }
         ps?.close()
         conexion.desconectar()
-        return result == 1
+        return result==1
     }
 
     override fun updateEmpleado(empleado: Empleado?,puesto:String): Boolean {

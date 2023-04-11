@@ -1,3 +1,5 @@
+import java.sql.SQLIntegrityConstraintViolationException
+
 /**
  * Categoria d a o impl
  *
@@ -38,11 +40,17 @@ class CategoriaDAOImpl : CategoriaDAO {
 
     override fun insertCategoria(categoria: Categoria): Boolean {
         conexion.conectar()
+        var result:Int?=null
         val query = "INSERT INTO categorias (cod_grupo, descripcion) VALUES (?, ?)"
         val ps = conexion.getPreparedStatement(query)
         ps?.setInt(1, categoria.codigo)
         ps?.setString(2, categoria.descripcion)
-        val result = ps?.executeUpdate()
+        try {
+             result = ps?.executeUpdate()
+        }  catch (e:SQLIntegrityConstraintViolationException){
+            println("La clave primaria esta repetida")
+        }
+
         ps?.close()
         conexion.desconectar()
         return result == 1

@@ -1,3 +1,7 @@
+import java.lang.Exception
+import java.sql.ResultSet
+import java.sql.SQLIntegrityConstraintViolationException
+
 /**
  * Producto dao imp
  *
@@ -7,10 +11,16 @@ class ProductoDAOImp: ProductoDAO {
     private val conexion = ConexionBD()
     override fun getProductoByCodigo(codigo: Int): Producto? {
         conexion.conectar()
+        var rs:ResultSet?=null
         val query = "SELECT * FROM productos WHERE cod_prod = ?"
         val ps = conexion.getPreparedStatement(query)
         ps?.setInt(1, codigo)
-        val rs = ps?.executeQuery()
+        try {
+             rs = ps?.executeQuery()
+        }catch (e:Exception){
+            println("Clave primaria no valida")
+        }
+
         var producto: Producto? = null
         if (rs?.next() == true) {
             producto = Producto(rs.getInt("cod_prod"), rs.getInt("cod_cat"),rs.getString("nombre"),rs.getInt("cant"),rs.getInt("precio"))
@@ -37,6 +47,7 @@ class ProductoDAOImp: ProductoDAO {
 
     override fun insertProducto(producto: Producto): Boolean {
          conexion.conectar()
+        var result:Int?=0
         val query = "INSERT INTO productos(cod_prod, cod_cat, nombre, cant, precio) VALUES (?, ?, ?, ?, ?)"
         val ps = conexion.getPreparedStatement(query)
         ps?.setInt(1, producto.codigo)
@@ -44,7 +55,11 @@ class ProductoDAOImp: ProductoDAO {
         ps?.setString(3, producto.nombre)
         ps?.setInt(4, producto.cantidad)
         ps?.setInt(5, producto.precio)
-        val result = ps?.executeUpdate()
+        try {
+            result = ps?.executeUpdate()
+        }catch (e:SQLIntegrityConstraintViolationException){
+            println("Clave primaria repetida")
+        }
         ps?.close()
         conexion.desconectar()
         return result == 1
@@ -78,7 +93,7 @@ class ProductoDAOImp: ProductoDAO {
             return result == 1
 
         }
-    override fun updateProductoCantidad(producto: Producto?): Boolean {
+        override fun updateProductoCantidad(producto: Producto): Boolean {
         conexion.conectar()
         val query = "UPDATE productos SET cantidad = ? WHERE cod_prod = ?"
         val ps = conexion.getPreparedStatement(query)
@@ -97,10 +112,16 @@ class ProductoDAOImp: ProductoDAO {
 
     override fun deleteProducto(codigo: Int): Boolean {
         conexion.conectar()
+        var result:Int?=0
         val query = "DELETE FROM productos WHERE cod_prod = ?"
         val ps = conexion.getPreparedStatement(query)
         ps?.setInt(1, codigo)
-        val result = ps?.executeUpdate()
+        try {
+             result = ps?.executeUpdate()
+        }catch (e:Exception){
+            println("Esa clave primaria no existe")
+        }
+
         ps?.close()
         conexion.desconectar()
         return result == 1

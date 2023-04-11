@@ -10,6 +10,8 @@ val campos = arrayListOf(
 )
 
 interface CategoriaDAO {
+
+
     /**
      * Get categoria by codigo
      *

@@ -1,10 +1,12 @@
 import str.Menu_str
-var operaciones= Operaciones()
+import java.lang.Exception
+
 fun main() {
+    var operaciones= Operaciones()
     println(Menu_str.bienvenida)
     mostrarTablas()
-    var accion: Int = pedirNumero()
-    comprobarAccion(accion)
+    var accion: Int = pedirNumero(4)
+    comprobarAccion(accion,operaciones)
 
 }
 
@@ -16,11 +18,11 @@ fun mostrarTablas() {
     println("4. Categoría de producto")
 }
 
-fun comprobarAccion(accion:Int) {
+fun comprobarAccion(accion:Int,operaciones:Operaciones) {
     when (accion){
         1 -> {
             imprimirOpcionesCat()
-            var accion= pedirNumero()
+            var accion= pedirNumero(4)
             when(accion){
                 1 -> operaciones.insertarCategoria()
                 2 -> operaciones.borrarCategoria()
@@ -31,7 +33,7 @@ fun comprobarAccion(accion:Int) {
 
         2 -> {
             imprimirOpcionesEmple()
-            var accion= pedirNumero()
+            var accion= pedirNumero(4)
             when(accion){
                 1 -> operaciones.contrEmpleado()
                 2 -> operaciones.despEmpleado()
@@ -42,38 +44,41 @@ fun comprobarAccion(accion:Int) {
 
         3 -> {
             imprimirOpcionesProd()
-            var accion= pedirNumero()
+            var accion= pedirNumero(5)
             when(accion){
-                1 -> operaciones.contrEmpleado()
-                2 -> operaciones.despEmpleado()
-                3 -> operaciones.cambiarPuesto()
-                4 -> operaciones.obtCategoriaProd()
+                1 -> operaciones.altaProducto()
+                2 -> operaciones.bajaProducto()
+                3 -> operaciones.modificarPrecio()
+                4->operaciones.modificarCantidad()
+                5->{
+                    operaciones.obtTProd()
+                }
             }
         }
 
         4 -> {
             imprimirOpcionesProdCat()
-            var accion= pedirNumero()
+            var accion= pedirNumero(2)
             when(accion){
-                1 -> operaciones.obtCategoriaProd()
-                2 -> operaciones.cambiarCategoriaProd()
-                3 -> operaciones.obtTodosProdCat()
+                1 -> operaciones.obtTodosProdCat()
+                2 -> println( operaciones.obtCategoriaProd())
+                }
             }
         }
     }
-}
 
 fun imprimirOpcionesProd() {
-    println("1.Añadir categoria")
-    println("2.Borrar categoria")
-    println("3.Modificar categoria")
-    println("4.Obtener todos los productos")
+    println("1.Añadir producto")
+    println("2.Borrar producto")
+    println("3.Modificar precio de un producto")
+    println("4.Modificar cantidad de un producto")
+    println("5.Consultar todos los productos")
 }
 
 fun imprimirOpcionesProdCat() {
-    println("1.Añadir categoria")
-    println("2.Modificar categoria")
-    println("3.Obtener todos los productos de categoria")
+    println("1.Consultar productos de una categoria")
+    println("2.Consultar datos de una categoria de un producto")
+
 }
 
 fun imprimirOpcionesCat() {
@@ -91,14 +96,28 @@ fun imprimirOpcionesEmple() {
     println("4.Obtener todos los empleados")
 }
 
-fun pedirNumero(): Int {
+fun pedirNumero(n:Int): Int {
     var accion= 0
-    try {
-        accion = readln().toInt()
-    } catch (ex: NumberFormatException) {
-        println("Solo se puede introducir números")
-        pedirNumero()
+    var c =true
+
+    do {
+        try {
+            accion = readln().toInt()
+            if (accion>n){
+                throw Exception("El numero no es correcto")
+            }
+        } catch (ex: NumberFormatException) {
+            println("Solo se puede introducir números")
+            c=false
+        } catch (e:Exception){
+            c=false
+            println("El numero no es correcto")
+        }
+    if (accion<=n){
+        c=true
     }
+    }while (!c)
+
     return accion
 }
 
