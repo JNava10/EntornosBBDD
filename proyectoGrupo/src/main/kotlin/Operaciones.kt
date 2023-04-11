@@ -123,6 +123,13 @@ class Operaciones {
         }
     }
 
+    fun obtTodasCat() {
+        var categorias = categoriaDAO.getAllCategorias()
+        for (i in categorias.indices) {
+            println("Categoria ${categorias[i].codigo} - ${categorias[i].descripcion}")
+        }
+    }
+
     // Categorias de productos
 
     /** Obtener todos los productos de una categoria */
@@ -167,7 +174,5 @@ class Operaciones {
             println("El codigo de producto que se ha introducido debe ser un numero.")
             codProd = readln().toInt() // FIXME
         }
-
-        // TODO: Añadir metodo en BBDD de actualizar cat.
     }
 }
