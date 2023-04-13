@@ -142,21 +142,34 @@ class Operaciones {
     fun modificarCategoria() {
         var codCat = 0
         var descCat = ""
+        var r=false
+        var categoria:Categoria?=null
+        var dao =CategoriaDAOImpl()
+        var cs=dao.getAllCategorias()
+        println("Categorias")
+        cs.forEach { println("${it.codigo} : ${it.descripcion}.") }
+        while (!r) {
+            r=true
 
-        try {
-            println("Introduce el codigo de la categoria que quieres modificar:")
-            codCat = readln().toInt()
-        } catch (numEx: NumberFormatException) {
-            println("El codigo de categoria que se ha introducido debe ser un numero.")
-            codCat = readln().toInt() // FIXME
+            try {
+                println("Introduce el codigo de la categoria que quieres modificar:")
+
+                codCat = readln().toInt()
+            } catch (numEx: NumberFormatException) {
+                println("El codigo de categoria que se ha introducido debe ser un numero.")
+            }
+            categoria=dao.getCategoriaByCodigo(codCat)
+            if (categoria?.codigo!=codCat){
+                r=false
+                println("Esa categoria no existe")
+            }
         }
-
         println("Introduce la descripcion de la categoria que quieras modificar:")
         descCat = readln()
 
-        var categoria = categoriaDAO.updateCategoria(Categoria(codCat, descCat))
+       var d =categoriaDAO.updateCategoria(Categoria(codCat, descCat))
 
-        if (categoria) {
+        if (d) {
             println("Se ha modificado la categoria con codigo $codCat")
         }
     }
@@ -357,7 +370,7 @@ class Operaciones {
         var producto:Producto?=null
         println("Elige el producto al que le quieres cambiar el precio")
         var productos=p.getAllProducto()
-        productos.forEach { println(it) }
+        productos.forEach { println("${it.codigo} - ${it.nombre}-${it.precio}") }
         var r=false
         while (!r) {
             r=true
@@ -392,9 +405,9 @@ class Operaciones {
         var cod=0
         var cantidad=0
         var producto:Producto?=null
-        println("Elige el producto al que le quieres cambiar el precio")
+        println("Elige el producto al que le quieres la cantidad")
         var productos=p.getAllProducto()
-        productos.forEach { println(it) }
+        productos.forEach { println("${it.codigo} - ${it.nombre}-${it.cantidad}") }
         var r=false
         while (!r) {
             r=true
@@ -422,7 +435,7 @@ class Operaciones {
             }
         }
         producto?.cambiarCantidad(cantidad)
-        p.updateProductoPrecio(producto)
+        p.updateProductoCantidad(producto)
     }
 
     fun obtTProd() {
