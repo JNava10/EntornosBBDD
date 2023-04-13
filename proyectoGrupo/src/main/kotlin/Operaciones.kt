@@ -1,11 +1,7 @@
-import java.lang.Exception
-import java.lang.NumberFormatException
-import java.sql.SQLIntegrityConstraintViolationException
-import ProductoDAOImp
 class Operaciones {
-    private var prod_cat = Prod_CatDAOImp()
-    private var empleadoDAO = EmpleadoDAOImp()
-    private var categoriaDAO = CategoriaDAOImpl()
+    var prod_cat = Prod_CatDAOImp()
+    var empleadoDAO = EmpleadoDAOImp()
+    var categoriaDAO = CategoriaDAOImpl()
 
     // Empleado //
 

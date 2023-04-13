@@ -1,10 +1,9 @@
 import str.Menu_str
-import java.lang.Exception
 
 fun main() {
-    var operaciones= Operaciones()
     println(Menu_str.bienvenida)
     mostrarTablas()
+    var operaciones=Operaciones()
     var accion: Int = pedirNumero(4)
     comprobarAccion(accion,operaciones)
 
