@@ -1,7 +1,10 @@
-import java.lang.Exception
+
 import java.lang.NumberFormatException
 import java.sql.SQLIntegrityConstraintViolationException
 import ProductoDAOImp
+import kotlin.Exception
+import org.junit.platform.commons.util.ExceptionUtils as ExceptionUtils1
+
 class Operaciones {
     private var prod_cat = Prod_CatDAOImp()
     private var empleadoDAO = EmpleadoDAOImp()
@@ -35,6 +38,7 @@ class Operaciones {
     fun contrEmpleado() {
         var r=false
         var dniEmple: Int=0
+        var puestoEmple: Int=0
         while (!r){
             var r2=false
             while (!r2) {
@@ -54,12 +58,27 @@ class Operaciones {
             }
             println("Nombre del empleado")
             var nEmpleado: String = readln()
-
-            println("Puesto del empleado")
-            var puestoEmple: String = readln()
-
-            var empleado1 = Empleado(dniEmple.toString(), nEmpleado, puestoEmple)
+                r2=false
+                while (!r2) {
+                    r2=true
+                    println("Puesto del empleado")
+                    try {
+                        puestoEmple = readln().toInt()
+                        if (puestoEmple.toString().length>3){
+                            throw Exception()
+                        }
+                    } catch (e: NumberFormatException) {
+                        println("Debe ser un numero")
+                        r2=false
+                    }catch (e2:Exception){
+                        println("Se ha excedido el limite de caracteres (3)")
+                    }
+                }
+            var empleado1 = Empleado(dniEmple.toString(), nEmpleado, puestoEmple.toString())
             r=empleadoDAO.insertEmpleado(empleado1)
+                if (!r){
+                    println("La clave primaria esta repetida")
+                }
         }
     }}
 
@@ -96,7 +115,6 @@ class Operaciones {
                 } catch (numEx: NumberFormatException) {
                     b = false
                     println("El codigo de categoria que se ha introducido debe ser un numero.")
-                    codCat = readln().toInt() // FIXME
                 }
             }
 
@@ -202,11 +220,13 @@ class Operaciones {
         var codProd = 0
         var r=false
         var categoria:Categoria?=null
+        var dao =CategoriaDAOImpl()
         println("Introduce el codigo del producto para consultar su categoria")
         while (!r) {
             r=true
             try {
                 codProd = readln().toInt()
+                categoria=dao.getCategoriaByCodigo(codProd)
                 if (!categoria?.codigo.toString().equals(codProd.toString())){
                     throw Exception()
                 }
@@ -252,29 +272,32 @@ class Operaciones {
                 try {
                     cod = readln().toInt()
                     if (cod.toString().length > 11) {
-                        throw Exception()
+                        r2=false
                     }
-                } catch (e2: NumberFormatException) {
-                    println("El codigo debe ser un numero")
-                    r2=false
-                }catch (E: Exception) {
-                    println("Se ha excedido el tamaño maximo (11) ")
-                    r2=false
+                } catch (e:Exception) {
+                    println("El codigo debe ser un numero (tamaño maximo 11)")
+                    r2 = false
                 }
+
             }
-            r=false
-            while (!r){
+            r2=false
+            while (!r2){
                 r2=true
                 println("Codigo de categoria: ")
                 try {
                     categoria= readln().toInt()
+                    if (categoria.toString().length>3){
+                        throw Exception()
+                    }
                 } catch (e2: NumberFormatException) {
-                println("El codigo debe ser un numero")
+                println("El codigo debe ser un numero (tamaño maximo 3) ")
                 r2=false
-            }catch (E: Exception) {
-                println("Se ha excedido el tamaño maximo (3) ")
+
+                }catch (E: Exception) {
+
                 r2=false
             }
+
             }
                 println("Introduce el nombre")
                  nombre= readln()
@@ -290,8 +313,6 @@ class Operaciones {
                 }
             }
             r2=false
-                println("Puesto del empleado")
-                var puestoEmple: String = readln()
             while (!r2){
                 r2=true
                 println("Precio")
