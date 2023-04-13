@@ -92,9 +92,9 @@ class ProductoDAOImp: ProductoDAO {
             return result == 1
 
         }
-        override fun updateProductoCantidad(producto: Producto): Boolean {
+        override fun updateProductoCantidad(producto: Producto?): Boolean {
         conexion.conectar()
-        val query = "UPDATE productos SET cantidad = ? WHERE cod_prod = ?"
+        val query = "UPDATE productos SET cant = ? WHERE cod_prod = ?"
         val ps = conexion.getPreparedStatement(query)
         if (producto != null) {
             ps?.setInt(1, producto.cantidad)

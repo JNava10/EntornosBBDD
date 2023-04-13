@@ -48,7 +48,7 @@ class EmpleadoDAOImp : EmpleadoDAO {
         try {
              result = ps?.executeUpdate()
         }catch (pk:SQLIntegrityConstraintViolationException){
-            println("La clave primaria esta repetida")
+            return result==1
         }
         ps?.close()
         conexion.desconectar()
